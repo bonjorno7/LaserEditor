@@ -29,6 +29,10 @@ window/size/viewport_width=880
 window/size/viewport_height=660
 window/dpi/allow_hidpi=false
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg")
+
 [input]
 
 left_click={
