@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4jxsbo5qdeyl"]
+
+[ext_resource type="Script" path="res://edit/laser/laser.gd" id="1_xclua"]
+[ext_resource type="Script" path="res://edit/utility/bezier.gd" id="2_7g12i"]
+[ext_resource type="Script" path="res://edit/utility/grid.gd" id="3_yfx7l"]
+[ext_resource type="Texture2D" uid="uid://iwxx0c25pkad" path="res://edit/laser/laser.png" id="5_eltpp"]
+
+[sub_resource type="Resource" id="Resource_7nxp6"]
+script = ExtResource("2_7g12i")
+step_size = 8
+
+[sub_resource type="Resource" id="Resource_7yxcc"]
+script = ExtResource("3_yfx7l")
+unit_left = 0.0
+unit_right = 50.0
+unit_bottom = 0.0
+unit_top = 192.0
+pixel_left = -150.0
+pixel_right = 150.0
+pixel_bottom = 0.0
+pixel_top = -768.0
+
+[sub_resource type="Resource" id="Resource_iju4w"]
+script = ExtResource("3_yfx7l")
+unit_left = 0.0
+unit_right = 50.0
+unit_bottom = 0.0
+unit_top = 192.0
+pixel_left = -270.0
+pixel_right = 270.0
+pixel_bottom = 0.0
+pixel_top = -768.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_35uys"]
+blend_mode = 1
+
+[node name="Laser" type="Area2D"]
+script = ExtResource("1_xclua")
+bezier = SubResource("Resource_7nxp6")
+grid_thin = SubResource("Resource_7yxcc")
+grid_wide = SubResource("Resource_iju4w")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+
+[node name="Reference" type="Polygon2D" parent="Collision"]
+material = SubResource("CanvasItemMaterial_35uys")
+texture = ExtResource("5_eltpp")
+texture_scale = Vector2(60, 60)

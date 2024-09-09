@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dvlg8kuu6fmn5"]
+
+[ext_resource type="Shader" path="res://ui/misc/blur.gdshader" id="1_vasss"]
+
+[resource]
+shader = ExtResource("1_vasss")
+shader_parameter/blur = 1.5
+shader_parameter/opacity = 0.25

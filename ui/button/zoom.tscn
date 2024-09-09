@@ -1,0 +1,188 @@
+[gd_scene load_steps=9 format=3 uid="uid://cl7fnw0a5ts7o"]
+
+[ext_resource type="Theme" uid="uid://q2h0kmrghgea" path="res://ui/misc/theme.tres" id="1_dlbku"]
+[ext_resource type="Script" path="res://ui/button/zoom.gd" id="1_skd26"]
+[ext_resource type="Material" uid="uid://dvlg8kuu6fmn5" path="res://ui/popup/blur.tres" id="3_xqe2l"]
+[ext_resource type="StyleBox" uid="uid://deriga5da3y1a" path="res://ui/shadow/low.tres" id="4_5l35j"]
+[ext_resource type="Material" uid="uid://bdis63qhn7u3x" path="res://ui/shadow/shadow.tres" id="4_hdrwx"]
+[ext_resource type="Theme" uid="uid://cs6kdkv3r3w66" path="res://ui/popup/item.tres" id="5_w3ile"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5acm"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_al76g"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[node name="Zoom" type="Button"]
+custom_minimum_size = Vector2(80, 30)
+offset_right = 80.0
+offset_bottom = 30.0
+focus_mode = 0
+theme = ExtResource("1_dlbku")
+toggle_mode = true
+action_mode = 0
+text = "100.0 %"
+script = ExtResource("1_skd26")
+
+[node name="Popup" type="Panel" parent="."]
+visible = false
+material = ExtResource("3_xqe2l")
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = 5.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s5acm")
+metadata/_edit_group_ = true
+
+[node name="Shadow" type="Panel" parent="Popup"]
+show_behind_parent = true
+material = ExtResource("4_hdrwx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_5l35j")
+
+[node name="Items" type="VBoxContainer" parent="Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_w3ile")
+theme_override_constants/separation = 0
+
+[node name="Top" type="HBoxContainer" parent="Popup/Items"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Item0250" type="Button" parent="Popup/Items/Top"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("5_w3ile")
+text = "25"
+
+[node name="Item0375" type="Button" parent="Popup/Items/Top"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("5_w3ile")
+text = "38"
+
+[node name="Item0500" type="Button" parent="Popup/Items/Top"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("5_w3ile")
+text = "50"
+
+[node name="Middle" type="HBoxContainer" parent="Popup/Items"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Item0750" type="Button" parent="Popup/Items/Middle"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("5_w3ile")
+text = "75"
+
+[node name="Item1000" type="Button" parent="Popup/Items/Middle"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("5_w3ile")
+text = "100"
+
+[node name="Item1500" type="Button" parent="Popup/Items/Middle"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("5_w3ile")
+text = "150"
+
+[node name="Bottom" type="HBoxContainer" parent="Popup/Items"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Item2000" type="Button" parent="Popup/Items/Bottom"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("5_w3ile")
+text = "200"
+
+[node name="Item3000" type="Button" parent="Popup/Items/Bottom"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("5_w3ile")
+text = "300"
+
+[node name="Item4000" type="Button" parent="Popup/Items/Bottom"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("5_w3ile")
+text = "400"
+
+[node name="Outline" type="Panel" parent="Popup"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_al76g")
+
+[connection signal="pressed" from="Popup/Items/Top/Item0250" to="." method="_on_item_pressed" binds= [0.25]]
+[connection signal="pressed" from="Popup/Items/Top/Item0375" to="." method="_on_item_pressed" binds= [0.375]]
+[connection signal="pressed" from="Popup/Items/Top/Item0500" to="." method="_on_item_pressed" binds= [0.5]]
+[connection signal="pressed" from="Popup/Items/Middle/Item0750" to="." method="_on_item_pressed" binds= [0.75]]
+[connection signal="pressed" from="Popup/Items/Middle/Item1000" to="." method="_on_item_pressed" binds= [1.0]]
+[connection signal="pressed" from="Popup/Items/Middle/Item1500" to="." method="_on_item_pressed" binds= [1.5]]
+[connection signal="pressed" from="Popup/Items/Bottom/Item2000" to="." method="_on_item_pressed" binds= [2.0]]
+[connection signal="pressed" from="Popup/Items/Bottom/Item3000" to="." method="_on_item_pressed" binds= [3.0]]
+[connection signal="pressed" from="Popup/Items/Bottom/Item4000" to="." method="_on_item_pressed" binds= [4.0]]

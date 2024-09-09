@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://bronegll41bre"]
+
+[ext_resource type="Theme" uid="uid://q2h0kmrghgea" path="res://ui/misc/theme.tres" id="1_a2cj0"]
+[ext_resource type="Script" path="res://ui/button/layer.gd" id="1_wgact"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ye0xr"]
+
+[node name="Layer" type="HBoxContainer"]
+custom_minimum_size = Vector2(240, 30)
+offset_right = 240.0
+offset_bottom = 30.0
+theme = ExtResource("1_a2cj0")
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("1_wgact")
+
+[node name="NoteBT" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_ye0xr")
+text = "BT"
+
+[node name="NoteFX" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_ye0xr")
+text = "FX"
+
+[node name="LaserL" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_ye0xr")
+text = "LS-L"
+
+[node name="LaserR" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_ye0xr")
+text = "LS-R"
+
+[connection signal="gui_input" from="NoteBT" to="." method="_on_item_gui_input"]
+[connection signal="toggled" from="NoteBT" to="." method="_on_item_toggled" binds= [0]]
+[connection signal="gui_input" from="NoteFX" to="." method="_on_item_gui_input"]
+[connection signal="toggled" from="NoteFX" to="." method="_on_item_toggled" binds= [1]]
+[connection signal="gui_input" from="LaserL" to="." method="_on_item_gui_input"]
+[connection signal="toggled" from="LaserL" to="." method="_on_item_toggled" binds= [2]]
+[connection signal="gui_input" from="LaserR" to="." method="_on_item_gui_input"]
+[connection signal="toggled" from="LaserR" to="." method="_on_item_toggled" binds= [3]]

@@ -1,0 +1,148 @@
+[gd_scene load_steps=9 format=3 uid="uid://dsch8dc3v4msv"]
+
+[ext_resource type="Script" path="res://ui/button/snap.gd" id="1_eoeu4"]
+[ext_resource type="Theme" uid="uid://q2h0kmrghgea" path="res://ui/misc/theme.tres" id="1_ski5a"]
+[ext_resource type="StyleBox" uid="uid://deriga5da3y1a" path="res://ui/shadow/low.tres" id="2_o3k2h"]
+[ext_resource type="Material" uid="uid://dvlg8kuu6fmn5" path="res://ui/popup/blur.tres" id="3_pxtd5"]
+[ext_resource type="StyleBox" uid="uid://bknpkt3rd7iw" path="res://ui/popup/popup.tres" id="4_rvmt1"]
+[ext_resource type="Material" uid="uid://bdis63qhn7u3x" path="res://ui/shadow/shadow.tres" id="5_mcms7"]
+[ext_resource type="Theme" uid="uid://cs6kdkv3r3w66" path="res://ui/popup/item.tres" id="6_516xn"]
+[ext_resource type="StyleBox" uid="uid://448djr8xksh0" path="res://ui/popup/outline.tres" id="7_t6ah1"]
+
+[node name="Snap" type="Button"]
+custom_minimum_size = Vector2(80, 30)
+offset_right = 80.0
+offset_bottom = 30.0
+focus_mode = 0
+theme = ExtResource("1_ski5a")
+toggle_mode = true
+action_mode = 0
+text = "1 / 16"
+script = ExtResource("1_eoeu4")
+
+[node name="Popup" type="Panel" parent="."]
+visible = false
+material = ExtResource("3_pxtd5")
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 5.0
+offset_right = 110.0
+offset_bottom = 155.0
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("4_rvmt1")
+metadata/_edit_group_ = true
+
+[node name="Shadow" type="Panel" parent="Popup"]
+show_behind_parent = true
+material = ExtResource("5_mcms7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_o3k2h")
+
+[node name="Items" type="HBoxContainer" parent="Popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_516xn")
+theme_override_constants/separation = 0
+
+[node name="Left" type="VBoxContainer" parent="Popup/Items"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Item4" type="Button" parent="Popup/Items/Left"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "4"
+
+[node name="Item8" type="Button" parent="Popup/Items/Left"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "8"
+
+[node name="Item16" type="Button" parent="Popup/Items/Left"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "16"
+
+[node name="Item32" type="Button" parent="Popup/Items/Left"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "32"
+
+[node name="Item64" type="Button" parent="Popup/Items/Left"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "64"
+
+[node name="Right" type="VBoxContainer" parent="Popup/Items"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Item12" type="Button" parent="Popup/Items/Right"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "12"
+
+[node name="Item24" type="Button" parent="Popup/Items/Right"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "24"
+
+[node name="Item48" type="Button" parent="Popup/Items/Right"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "48"
+
+[node name="Item96" type="Button" parent="Popup/Items/Right"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "96"
+
+[node name="Item192" type="Button" parent="Popup/Items/Right"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+focus_mode = 0
+text = "192"
+
+[node name="Outline" type="Panel" parent="Popup"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("7_t6ah1")
+
+[connection signal="pressed" from="Popup/Items/Left/Item4" to="." method="_on_item_pressed" binds= [4]]
+[connection signal="pressed" from="Popup/Items/Left/Item8" to="." method="_on_item_pressed" binds= [8]]
+[connection signal="pressed" from="Popup/Items/Left/Item16" to="." method="_on_item_pressed" binds= [16]]
+[connection signal="pressed" from="Popup/Items/Left/Item32" to="." method="_on_item_pressed" binds= [32]]
+[connection signal="pressed" from="Popup/Items/Left/Item64" to="." method="_on_item_pressed" binds= [64]]
+[connection signal="pressed" from="Popup/Items/Right/Item12" to="." method="_on_item_pressed" binds= [12]]
+[connection signal="pressed" from="Popup/Items/Right/Item24" to="." method="_on_item_pressed" binds= [24]]
+[connection signal="pressed" from="Popup/Items/Right/Item48" to="." method="_on_item_pressed" binds= [48]]
+[connection signal="pressed" from="Popup/Items/Right/Item96" to="." method="_on_item_pressed" binds= [96]]
+[connection signal="pressed" from="Popup/Items/Right/Item192" to="." method="_on_item_pressed" binds= [192]]

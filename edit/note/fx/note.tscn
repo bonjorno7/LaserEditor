@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://djgt7qokipgfd"]
+
+[ext_resource type="Script" path="res://edit/note/note.gd" id="1_bxgea"]
+[ext_resource type="Script" path="res://edit/utility/grid.gd" id="2_bphct"]
+[ext_resource type="Texture2D" uid="uid://b2c7scou8e8su" path="res://edit/note/fx/chip.png" id="4_obec8"]
+[ext_resource type="Texture2D" uid="uid://mxplganhehfx" path="res://edit/note/fx/hold.png" id="6_julx2"]
+
+[sub_resource type="Resource" id="Resource_uqh04"]
+script = ExtResource("2_bphct")
+unit_left = 0.0
+unit_right = 1.0
+unit_bottom = 0.0
+unit_top = 192.0
+pixel_left = -60.0
+pixel_right = 60.0
+pixel_bottom = 0.0
+pixel_top = -768.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ehv00"]
+blend_mode = 1
+
+[node name="NoteFX" type="Area2D"]
+script = ExtResource("1_bxgea")
+grid = SubResource("Resource_uqh04")
+
+[node name="Chip" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-60, 0, 60, 0, 60, -30, -60, -30)
+
+[node name="Sprite" type="Sprite2D" parent="Chip"]
+texture = ExtResource("4_obec8")
+offset = Vector2(0, -15)
+
+[node name="Hold" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-60, 0, 60, 0, 60, -1, -60, -1)
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="Hold"]
+material = SubResource("CanvasItemMaterial_ehv00")
+texture = ExtResource("6_julx2")
+offset = Vector2(0, -0.5)

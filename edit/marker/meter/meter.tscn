@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://p5bchy5rgcw6"]
+
+[ext_resource type="Script" path="res://edit/marker/meter/meter.gd" id="1_akv84"]
+[ext_resource type="Script" path="res://edit/utility/grid.gd" id="2_vgk05"]
+
+[sub_resource type="Resource" id="Resource_fq0wq"]
+script = ExtResource("2_vgk05")
+unit_left = 0.0
+unit_right = 0.0
+unit_bottom = 0.0
+unit_top = 192.0
+pixel_left = 0.0
+pixel_right = 0.0
+pixel_bottom = 0.0
+pixel_top = -768.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_6607o"]
+font_size = 20
+font_color = Color(0.878431, 0.878431, 0.878431, 1)
+outline_size = 1
+outline_color = Color(0.878431, 0.878431, 0.878431, 1)
+
+[node name="Meter" type="Area2D"]
+script = ExtResource("1_akv84")
+grid = SubResource("Resource_fq0wq")
+
+[node name="Box" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-45, 5, 45, 5, 45, -25, -45, -25)
+
+[node name="Line" type="Line2D" parent="Box"]
+points = PackedVector2Array(-40, 0, 40, 0)
+width = 2.0
+default_color = Color(0.752941, 0.752941, 0.752941, 1)
+
+[node name="Label" type="Label" parent="Box"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -30.0
+offset_right = 40.0
+grow_vertical = 0
+text = "4 / 4"
+label_settings = SubResource("LabelSettings_6607o")
+horizontal_alignment = 1
+vertical_alignment = 2

@@ -1,0 +1,388 @@
+[gd_scene load_steps=21 format=3 uid="uid://d0sydcyx1fwit"]
+
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_fjmvx"]
+[ext_resource type="Theme" uid="uid://q2h0kmrghgea" path="res://ui/misc/theme.tres" id="1_hn7nu"]
+[ext_resource type="Texture2D" uid="uid://88gif0p5ia6v" path="res://ui/misc/background.jpg" id="1_qrfjq"]
+[ext_resource type="Shader" path="res://ui/misc/blur.gdshader" id="3_tvhv0"]
+[ext_resource type="StyleBox" uid="uid://bup7o5hpkjuka" path="res://ui/shadow/high.tres" id="4_jyx0l"]
+[ext_resource type="Material" uid="uid://bdis63qhn7u3x" path="res://ui/shadow/shadow.tres" id="6_mxsy7"]
+[ext_resource type="PackedScene" uid="uid://dl5q7s00033ll" path="res://edit/edit.tscn" id="6_s0u8n"]
+[ext_resource type="PackedScene" uid="uid://dsch8dc3v4msv" path="res://ui/button/snap.tscn" id="7_f1haq"]
+[ext_resource type="PackedScene" uid="uid://bronegll41bre" path="res://ui/button/layer.tscn" id="8_b4lr8"]
+[ext_resource type="PackedScene" uid="uid://cl7fnw0a5ts7o" path="res://ui/button/zoom.tscn" id="9_2kn44"]
+[ext_resource type="StyleBox" uid="uid://djheb8v4jy7nt" path="res://ui/shadow/medium.tres" id="9_4yiu4"]
+[ext_resource type="StyleBox" uid="uid://dwmxpcnafbkjj" path="res://ui/lane/lane.tres" id="9_7cjw5"]
+[ext_resource type="StyleBox" uid="uid://exjrh87rp62h" path="res://ui/lane/line.tres" id="9_njxts"]
+[ext_resource type="StyleBox" uid="uid://c5lvc8ovuicra" path="res://ui/lane/outline.tres" id="10_bbnau"]
+[ext_resource type="Script" path="res://ui/misc/group.gd" id="12_0umjo"]
+[ext_resource type="StyleBox" uid="uid://cenngbb7k5ptw" path="res://ui/lane/mask.tres" id="13_he3v0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j1xet"]
+shader = ExtResource("3_tvhv0")
+shader_parameter/blur = 0.0
+shader_parameter/opacity = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcys5"]
+shader = ExtResource("3_tvhv0")
+shader_parameter/blur = 6.0
+shader_parameter/opacity = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5powj"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.377919, 0.377919, 0.377919, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_40wvd"]
+blend_mode = 3
+
+[node name="UI" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_qrfjq")
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("1_fjmvx")
+metadata/_edit_lock_ = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+rect = Rect2(0, 0, 0, 0)
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_j1xet")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Frame" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_lcys5")
+custom_minimum_size = Vector2(840, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5powj")
+
+[node name="Shadow" type="Panel" parent="Frame"]
+show_behind_parent = true
+material = ExtResource("6_mxsy7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("4_jyx0l")
+metadata/_edit_lock_ = true
+
+[node name="Lanes" type="Control" parent="Frame"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = 50.0
+offset_right = 400.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LaneLeft" type="Panel" parent="Frame/Lanes"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 600.0
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("9_7cjw5")
+metadata/_edit_group_ = true
+
+[node name="Shadow" type="Panel" parent="Frame/Lanes/LaneLeft"]
+show_behind_parent = true
+material = ExtResource("6_mxsy7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("9_4yiu4")
+
+[node name="Middle" type="ColorRect" parent="Frame/Lanes/LaneLeft"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_right = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.187176, 0.187176, 0.187176, 1)
+
+[node name="Lines" type="HBoxContainer" parent="Frame/Lanes/LaneLeft"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Line1" type="Panel" parent="Frame/Lanes/LaneLeft/Lines"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="Line2" type="Panel" parent="Frame/Lanes/LaneLeft/Lines"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="Line3" type="Panel" parent="Frame/Lanes/LaneLeft/Lines"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="Line4" type="Panel" parent="Frame/Lanes/LaneLeft/Lines"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="Line5" type="Panel" parent="Frame/Lanes/LaneLeft/Lines"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="Line6" type="Panel" parent="Frame/Lanes/LaneLeft/Lines"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="Line7" type="Panel" parent="Frame/Lanes/LaneLeft/Lines"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="Line8" type="Panel" parent="Frame/Lanes/LaneLeft/Lines"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="Line9" type="Panel" parent="Frame/Lanes/LaneLeft/Lines"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="LaneRight" type="Panel" parent="Frame/Lanes"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = ExtResource("9_7cjw5")
+metadata/_edit_group_ = true
+
+[node name="Shadow" type="Panel" parent="Frame/Lanes/LaneRight"]
+show_behind_parent = true
+material = ExtResource("6_mxsy7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("9_4yiu4")
+
+[node name="Line" type="Panel" parent="Frame/Lanes/LaneRight"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("9_njxts")
+
+[node name="Chart" type="Control" parent="Frame/Lanes"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_0umjo")
+
+[node name="MaskLeft" type="Panel" parent="Frame/Lanes/Chart"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 600.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("13_he3v0")
+
+[node name="MaskRight" type="Panel" parent="Frame/Lanes/Chart"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("13_he3v0")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Frame/Lanes/Chart"]
+material = SubResource("CanvasItemMaterial_40wvd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Frame/Lanes/Chart/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(800, 550)
+render_target_update_mode = 0
+
+[node name="Edit" parent="Frame/Lanes/Chart/SubViewportContainer/SubViewport" instance=ExtResource("6_s0u8n")]
+
+[node name="OutlineLeft" type="Panel" parent="Frame/Lanes"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 600.0
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("10_bbnau")
+metadata/_edit_lock_ = true
+
+[node name="OutlineRight" type="Panel" parent="Frame/Lanes"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("10_bbnau")
+metadata/_edit_lock_ = true
+
+[node name="Blocker" type="Control" parent="Frame/Lanes"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_right = -180.0
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Frame"]
+position = Vector2(-20, -20)
+copy_mode = 2
+rect = Rect2(0, 0, 0, 0)
+
+[node name="Buttons" type="HBoxContainer" parent="Frame"]
+custom_minimum_size = Vector2(600, 30)
+layout_mode = 1
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 620.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Copy" type="Button" parent="Frame/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 30)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_hn7nu")
+text = "Copy to Clipboard"
+
+[node name="Layer" parent="Frame/Buttons" instance=ExtResource("8_b4lr8")]
+custom_minimum_size = Vector2(230, 30)
+layout_mode = 2
+
+[node name="Snap" parent="Frame/Buttons" instance=ExtResource("7_f1haq")]
+layout_mode = 2
+
+[node name="Zoom" parent="Frame/Buttons" instance=ExtResource("9_2kn44")]
+layout_mode = 2
+
+[node name="Labels" type="HBoxContainer" parent="Frame"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme = ExtResource("1_hn7nu")
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Tempo" type="Label" parent="Frame/Labels"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Tempo"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Meter" type="Label" parent="Frame/Labels"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Meter"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
